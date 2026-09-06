@@ -4,18 +4,13 @@ title: "UMD Fees"
 
 Follow along with the demo to learn how to calculate percentage change using R and the Tidyverse. You should get started by loading the tidyverse in a new R block.
 
-
 ### Task 1: Load the tidyverse
-
 
 ```{r}
 library(tidyverse)
 ```
 
-
-
-
-### Task 2: Load the UMD Fees dataset from https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/umd_fees.csv
+### Task 2: Load the UMD Fees dataset from <https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/umd_fees.csv>
 
 ```{r}
 umd_fees <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/umd_fees.csv")
@@ -27,13 +22,11 @@ umd_fees <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/hea
 umd_fees_pct <- umd_fees |> mutate(pct_change = (`Fall 2026`- `Fall 2021`)/`Fall 2021` * 100)
 ```
 
-
-
 ### Task 4: Describe the results
 
 Write a few sentences about what you found in those percentages. What's the story here? What questions do you have?
 
-
+Six out of seven fees have increased significantly over the five-year span. Notable fee increases include the shuttle bus, having increased by 58% over the stretch, and student sustainability, having increased by 150%. The story here would describe how fees have increased over the past 5 years, and while some may seem imperceptible, the increase of total fees of over 25% has led to students paying nearly 400 dollars more per year. I'd be interested in learning the justification given by UMD administration about the steady increase in fees. I'd also look to interview students and see if they've noticed any marked changes in the quality of these services that justify the price increase.
 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
