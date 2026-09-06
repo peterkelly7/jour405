@@ -56,7 +56,7 @@ R can do math, too, which is very necessary for statistics. Let's have it - not 
 ## Add 15 to 5 and store it in a variable called n
 
 ```{r}
-(15 + 5) -> n
+(15 + 5) -> p
 ```
 
 ## Find the square root of 16 and store it in a variable called p.
