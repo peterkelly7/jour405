@@ -39,7 +39,7 @@ team_aces |> mutate(percentile = ntile(total_aces, 100))
 
 Write a couple of sentences that puts Maryland into context with the other teams in the dataset. You can do some Internet research to help with this.
 
-
+Maryland was ranked in the 95th percentile for service aces in 2024. They were the second-highest power conference volleyball team, trailing only Pittsburgh, and they were the highest-ranked Big Ten team. However, Maryland finished 15th out of 18 Big Ten teams in the standings with a record of 14-17. Pittsburgh, the only higher-ranking power conference team, finished with a record of 33-2 and a berth in the national semifinal.
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
 
