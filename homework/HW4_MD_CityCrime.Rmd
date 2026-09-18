@@ -70,3 +70,24 @@ Even though Maryland state crime rates decreased by 15% from 2019 to 2020, accor
 ### Task 9: Save Your Work and Put it on GitHub
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
+
+### Task 10: Homework 5, percentile working
+
+Using the 2020 violent crime rate, calculate the percentiles using `ntile()`. Save the results to a new dataframe called `md_cities_percentiles`. How many cities are above the 90th percentile?
+
+```{r}
+md_cities_percentiles <- md_cities_rates |>
+  mutate(percentile = ntile(violent_rate_2020, 100))
+There are 11 cities with 90th percentile or above.
+```
+
+Calculate the Interquartile Range of the 2020 violent crime rate using `summarize()` and R's `IQR()` function. The syntax is similar to how `mean()` works.
+
+```{r}
+md_cities_rates |>
+  summarize(iqr_violent_2020 = IQR(violent_rate_2020))
+```
+
+Do the results change your best story idea from the previous assignment? Why or why not?
+
+The results don't change my best story idea too much because they still give a lot of the same information about violent crimes. However, they do make me want to add some other notes to give further context on my hypothesis. Noting the small IQR, I'd make an observation in my story that lots of the towns are bunched around similar violent crime rates. I'd also make a note that of the 11 cities at or above the 90th percentile, 5 of those are on the Eastern Shore of Maryland, which is a comparatively smaller region of the state population-wise.
