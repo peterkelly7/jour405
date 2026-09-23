@@ -35,7 +35,7 @@ car_thefts |>
   geom_histogram(aes(x = count), binwidth = 2) +
   geom_vline(aes(xintercept = mean(count)), color = "red", linetype = "dashed", size = 1) +
   geom_vline(aes(xintercept = mean(count) - sd(count)), color = "blue", linetype = "dashed", size = 1) +
-  geom_vline(aes(xintercept = mean(count) + sd(count)), color = "blue", linetype = "dashed", size = 1)
+  geom_vline(aes(xintercept = mean(count) + sd(count)), color = "blue", linetype = "dashed", size = 1) 
 ```
 
 
@@ -48,6 +48,6 @@ car_thefts |>
 
 Is the distribution normal or skewed in one direction? Write a sentence in which you describe the range of the data covered by one standard deviation from the mean on both sides - how much of the data falls in that range?
 
-
+The data is skewed to the right. Because the highest counts are higher than the mean, the data has a skew to the right and is not normal. The majority of the data falls in between 8 and 17, with 21 out of 31 days falling in that range. 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
