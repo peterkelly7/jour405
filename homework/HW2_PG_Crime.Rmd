@@ -62,7 +62,7 @@ Write up a lede and nutgraf of a story focused on the crime data in Prince Georg
 
 According to Prince George's County crime data, stolen vehicles and robbery (vehicle) increase drastically in July.
 
-Compared to their average frequency, stolen vehicles show a 42.9% increase in the month of July, while robbery (vehicle) shows a 64.5% increase in the same month. Along with many other categories of crime, these crimes saw significant rises in the middle of summer. In particular, these two crimes don't show nearly as much of an increase in June or August, with robbery (vehicle) even seeing a decline in the average frequency in August.
+Compared to their average frequency, stolen vehicles show a 42.9% increase in the month of July, while robbery (vehicle) shows a 64.5% increase in the same month. Along with many other categories of crime, these crimes saw significant rises in the middle of summer. In particular, these two crimes don't show nearly as much of an increase in June or August, with robbery (vehicle) even seeing a decline in average frequency in August.
 
 ### Task 9: Save Your Work and Put it on GitHub
 
