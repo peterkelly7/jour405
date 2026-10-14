@@ -124,5 +124,4 @@ The fact that 1000 random samples are all clustered around the same value demons
 
 I would want to ask how big the population is in general, what they are polling, and how many times they polled. If they increase the number of times they polled, a sample of 50 would be a bit better, and if the population was very small (say 100) then 50 would be a large proportion and would be more likely to be representative. However, if the population is much bigger than 50, I would not really trust that data because it is more likely to be skewed than a larger sample would be.
 
-
 When finished, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
