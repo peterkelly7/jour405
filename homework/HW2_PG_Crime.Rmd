@@ -1,5 +1,5 @@
 ---
-title: "HW2 Prince George's County Crime"
+title: "AVERAGES HW2 Prince George's County Crime"
 ---
 
 In this assignment, we will be working with a dataset reporting the number of crimes by month in Prince George's County, Maryland, for every month in 2024. 
