@@ -49,7 +49,7 @@ weekly_wmata |>
   geom_smooth(method = "lm", se = FALSE, color = "red", linetype = "dashed") +
   scale_y_continuous(labels = scales::comma) +
   labs(
-    title = "Weekly WMATA Ridership (2024-2025)",
+    title = "Weekly WMATA Ridership (2025-2026)",
     x = "Week",
     y = "Total Riders"
   ) +
@@ -58,4 +58,4 @@ weekly_wmata |>
 
 **Answer this question:** Describe the trend you see. Is ridership going up, down, or staying flat? What are the big dips, and what might explain them? What would you want to know before writing a story about Metro weekly ridership trends?
 
-ANSWER HERE
+Generally, ridership is trending up. There are big dips around the new year mark and that could be because of days where not many people are traveling like Christmas and Christmas Eve. Before writing a story, I would check if ridership has any specific point of the week where ridership sees a general increase or decrease, or if any months see more or less ridership than others.
