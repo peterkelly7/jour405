@@ -49,8 +49,8 @@ Replace the REPLACE_ME values to calculate the mean, standard deviation and coun
 ```{r}
 new_stats <- home_data |> 
   summarise(
-    mean = mean(REPLACE_ME),
-    sd = sd(REPLACE_ME),
+    mean = mean(sale_price),
+    sd = sd(sale_price),
     n = n()
   )
 
@@ -59,7 +59,7 @@ new_stats
 
 **Answer this question:** How does the new average compare to the prior average of $285,000? How much higher is it in dollar terms? Does that seem like a big difference to you? What else would you want to know?
 
-ANSWER HERE
+The answer is nearly 20,000 higher. This seems like a big difference to me because it raises the number above 300k. I would want to know the distance between the homes and the light rail station, and I would want to know residents' approval of the station and if they feel upset about any noise/light pollution.
 
 ### Task 3: Visualize the distribution (1 point)
 
@@ -97,7 +97,7 @@ ggplot(home_data, aes(x = sale_price)) +
 
 **Answer this question:** Look at where the old average (red dashed line) falls relative to the new sales. How many of the 14 homes sold for more than the old average? What does the histogram tell you about the spread of the new prices?
 
-ANSWER HERE
+All 14 of the sales were above the old average. The histogram tells me that the new prices aren't really spread out that much, but there is a slight rightward skew. It shows that the entire spread was affected by the light rail so much that it all was raised above the previous mean price.
 
 ### Task 4: Set up and perform a hypothesis test (2 points)
 
@@ -105,18 +105,18 @@ This is where we formally test the officials' claim. Fill in the REPLACE_ME valu
 
 **Hypotheses:**
 
-- **H₀ (Null):** REPLACE_ME
-- **H₁ (Alternative):** REPLACE_ME
+- **H₀ (Null):** New light rail lines have not affected home value in the neighborhood.
+- **H₁ (Alternative):** The new light rail lines have significantly increased home value in the neighborhood.
 
 ```{r}
 # Set the significance level
-alpha <- REPLACE_ME
+alpha <- 0.05
 
 # Perform a one-sample t-test
 # Since we want to know if home values INCREASED, we use alternative = "greater"
 t_test_result <- t.test(
   home_data$sale_price,
-  mu = REPLACE_ME,
+  mu = 285000,
   alternative = "greater"
 )
 
@@ -125,7 +125,7 @@ t_test_result
 
 **Answer this question:** Look at the p-value. Is it less than our alpha of 0.05? What does this mean for our null hypothesis — can we reject it? What can we now say about the officials' claim?
 
-ANSWER HERE
+Yes, the P-value is much less than our alpha. This means we can now reject the null hypothesis, saying that there is not NOT a change in housing value due to the light rail. We can now say that the officials' claim is not necessarily true, but it is not not false. 
 
 ### Task 5: Interpret the results with a confidence interval (2 points)
 
@@ -155,7 +155,7 @@ story_stats
 
 **Answer this question:** The 95% confidence interval tells us the range where the true average home price likely falls. Does that range include the old average of $285,000? What does that tell you?
 
-ANSWER HERE
+The 95% confidence interval does not include the old average of 285k. This tells us that we can be very confident that the new mean is over 285k, which in turn allows us to feel more confident that the light rail has increased housing value.
 
 ### Task 6: Calculate the effect size (3 points)
 
@@ -166,7 +166,7 @@ We've established that the increase is statistically significant — it's real, 
 Replace the REPLACE_ME values.
 
 ```{r}
-effect_size <- (mean(new_prices) - REPLACE_ME) / REPLACE_ME
+effect_size <- (mean(new_prices) - prior_mean) / prior_sd
 
 effect_size_label <- case_when(
   abs(effect_size) < 0.2 ~ "Negligible",
@@ -185,7 +185,7 @@ tibble(
 
 **Answer this question:** The effect size is "medium." In dollar terms, the average increase is about $19,500. But remember that the standard deviation of home prices in this neighborhood was $32,000 *before* the transit line — meaning prices already varied by tens of thousands of dollars from sale to sale. Given that context, does a $19,500 increase seem large or modest? How does the effect size help you think about this differently than just looking at the dollar amount?
 
-ANSWER HERE
+Given that context, the increase of $19,500 no longer seems that large, instead looking pretty modest. The effect size helps me think about this differently by comparing the perceived change to known figures, helping to contextualize more and understanding exactly if the change is significant or not. If you take standard deviation into account, there's a chance that some home prices won't change that much even with the value increase, while other home prices could see the full effect of the 19,500 increase.
 
 ### Task 7: What's the story? (6 points)
 
@@ -193,11 +193,11 @@ You now have all the statistical evidence. But writing the story requires more t
 
 **Part A:** The local officials are going to claim the transit line increased home values. Based on your analysis, is that claim supported? Write 2-3 sentences for the top of your story that accurately reflect both the statistical significance AND the effect size. Don't just echo the officials' talking points — interrogate them.
 
-ANSWER HERE
+Based on analysis, the officials' claim that the transit line increased home values seems true but can never be completely proven. What we do know is that there is not NO change on the housing value from the transit line, and we can also support that with our calculations on the new mean and new confidence interval. However, we can't be sure that the transit line is the only factor that caused this increase, so we cannot say with confidence that the officials' claim is true.
 
 **Part B:** A $19,500 increase is real and statistically significant, but what *else* could explain rising home prices in this neighborhood? List at least two alternative explanations that a good reporter would want to investigate before attributing the increase entirely to the transit line.
 
-ANSWER HERE
+I would want to investigate if there are any changes to the education system. If schools were recently renovated, that could increase the value of homes in the neighborhood. I would also want to see if any homes were remodeled. If homes were remodeled, especially nearby to each other, or a new modern development was installed, that would increase the homes' value.
 
 
 When you are finished, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
