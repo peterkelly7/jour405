@@ -1,6 +1,6 @@
 ---
 title: "HW11: Education Level and Survey Weighting"
-author: "Your Name Here"
+author: Peter Kelly
 ---
 
 ```{r setup, include=FALSE}
@@ -46,19 +46,19 @@ ggplot(nonvoters_data, aes(x = weight)) +
 
 **Question 1:** Most weights cluster near 1.0, but some are much higher or lower. What does a weight of 0.2 tell you about that respondent's group in the sample? What about a weight of 3.5? Why might a pollster assign such extreme weights?
 
-ANSWER HERE
+A weight of 0.2 tells me that there are a disproportionately high amount of respondents in that category while a weight of 3.5 tells me there are a disproportionately low amount of respondents in that category. Pollsters might assign those weights to make the poll seem more balanced and eliminate biases created by certain groups of people being less likely to respond.
 
 ## Task 2: Education Distribution in the Sample (3 points)
 
 ```{r education-distribution}
 nonvoters_data |>
-  count(REPLACE_ME) |>
+  count(educ) |>
   mutate(percentage = round(n / sum(n) * 100, 1))
 ```
 
 **Question 2:** College graduates are overrepresented in most surveys. Does that appear to be true here? Why might college graduates be more likely to respond to a survey than people with less education?
 
-ANSWER HERE
+With nearly 40% of respondents being college graduates, there is a significantly higher percentage of college grads than any other subgroup. It appears to be true that they are overrepresented. College graduates could be more likely to respond to surveys because there is a chance that if you have enough money to pay for higher education, you also have technology that others may not have access to like phones or computers to answer surveys on.
 
 ## Task 3: Unweighted Voting Intentions by Education (4 points)
 
@@ -87,7 +87,7 @@ unweighted_summary
 
 **Question 3:** Based only on these unweighted numbers, write a one-sentence headline for a story about education and voting intentions.
 
-ANSWER HERE
+People who didn't go to college are less likely to vote in elections.
 
 ## Task 4: Weighted Voting Intentions by Education (2 points)
 
@@ -97,7 +97,7 @@ Now apply the weights. Instead of counting respondents, we sum their weights —
 weighted_by_education <- nonvoters_data |>
   filter(!is.na(Q21), Q21 > 0, !is.na(educ)) |>
   group_by(educ, Q21) |>
-  summarize(weighted_count = sum(REPLACE_ME), .groups = "drop_last") |>
+  summarize(weighted_count = sum(weight), .groups = "drop_last") |>
   mutate(weighted_total = sum(weighted_count),
          weighted_percentage = weighted_count / weighted_total * 100) |>
   ungroup()
@@ -125,7 +125,7 @@ viz_data <- bind_rows(
   weighted_by_education |>
     filter(Q21 == 1) |>
     mutate(Type = "Weighted",
-           percentage = REPLACE_ME) |>
+           percentage = weighted_percentage) |>
     select(Type, educ, percentage)
 )
 
@@ -145,7 +145,7 @@ ggplot(viz_data, aes(x = educ, y = percentage, fill = Type)) +
 
 **Question 4:** Which education group shows the biggest shift between weighted and unweighted results? In percentage points, how large is that shift? Does weighting change the story, or does it just change the exact numbers?
 
-ANSWER HERE
+The group showing the biggest shift are those who have high school or less. It drops by close to 3% when weighted. This mostly just changes the exact numbers because high school or less is still the lowest, regardless of the number change.
 
 ## Task 6: The UMD Belonging Survey (8 points)
 
@@ -153,4 +153,8 @@ Earlier in class this week, we looked at the 2024 UMD Belonging and Community Su
 
 **Question 5:** Based on what you've learned in this assignment, write 2-3 paragraphs as if you were a reporter evaluating the UMD survey before writing a story based on it. Address: (1) what the lack of weighting means for how you'd use the results, (2) which groups in the UMD survey appeared most underrepresented based on Figures 1 and 2, and (3) what question you would ask the survey's authors before publishing.
 
-ANSWER HERE
+With the responses not being weighted, I would be mindful of the problems this creates. While it doesn't necessarily invalidate all the data, there are definitely some questions that draw a lot more scrutiny. First, with racial and ethnic demographics, there are certain subgroups that are well under their actual percentage of the population in the survey. These include Jewish people and Pacific Islander. Additionally, the poll didn't allow for a response for multiple racial/ethnic identities, so the unweighting can be further impactful because people may be forced into a group that they don't necessarily identify fully with. I would still use the data but would clarify how the results could be unrepresentative because certain groups could be over or under-represented, and how smaller samples need to have more nuance when analyzing the data.
+
+The ethnic groups that appear most underrepresented are Jewish and Pacific Islander. Additionally, men are also underrepresented with only about 38% of respondents identifying as a man.
+
+I would ask the survey's authors if there was any reason for not weighting the poll when it comes to increasing representation for the above-mentioned groups being marginalized. I would also ask why there wasn't a question that was open-response for people to describe their ethnicity more specifically and why there wasn't a seperate question for race.
