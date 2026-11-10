@@ -18,4 +18,13 @@ rm(list = setdiff(ls(), c("cfboffense2024", "Coaches_Data")))
 
 #I have been downloading the year-by-year total CFB offense data from Sports Reference and uploading the csv files to RStudio entitled 'cfboffenseXXXX'. I will be going back to the year 2000.
 
+https://www.sports-reference.com/cfb/years/2000-team-offense.html is the link I've been using, replacing 2000 with the year that I want. I have every year loaded except from 2003-2006 because there was no coach that I'm looking at that is in that range.
 
+#I was confused on how to create a project folder to add the different CSV datasets into, so I ended up adding them all into RStudio. I can see all of them in my environment but they aren't showing up in my Github folder, so the assignment I submit for class won't really show any of the work I did. 
+
+#I still have some questions on how to isolate and connect the data that I want. My goals for the data are:
+  #Connect the respective years of each team in my coaches_data tab with their statistics in the cfboffenseXXXX sets
+  #Calculate z-scores for each team relative to their points per game 
+  #Connect the z-scores to the coaches and sort from worst to best 
+
+#If possible, I'd welcome any help from Professor Willis or our TA to write this code. 
