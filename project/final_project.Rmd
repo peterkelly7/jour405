@@ -1,0 +1,21 @@
+title: "final project"
+name: Peter Kelly
+
+```{r}
+library(tidyverse)
+```
+```{r}
+library(readr)
+Coaches_Data <- read_csv("~/Downloads/Coaches Data.csv")
+View(Coaches_Data)
+```
+#I researched to find all the coaches that fit the following criteria: coached under Nick Saban as head coach, has been a FBS head coach after they worked under Saban, and worked with Saban on the offensive side of the ball. Then I manually entered their name, years, and teams in an Excel sheet and converted it to csv to import to RStudio.
+
+```{r}
+rm(list = setdiff(ls(), c("cfboffense2024", "Coaches_Data")))
+```
+#I used this data to clear my environment of everything except what I wanted to keep.
+
+#I have been downloading the year-by-year total CFB offense data from Sports Reference and uploading the csv files to RStudio entitled 'cfboffenseXXXX'. I will be going back to the year 2000.
+
+
