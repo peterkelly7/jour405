@@ -28,3 +28,8 @@ https://www.sports-reference.com/cfb/years/2000-team-offense.html is the link I'
   #Connect the z-scores to the coaches and sort from worst to best 
 
 #If possible, I'd welcome any help from Professor Willis or our TA to write this code. 
+
+```{r}
+(read_csv('cfboffense2025')
+```
+
