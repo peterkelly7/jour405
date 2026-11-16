@@ -30,6 +30,48 @@ https://www.sports-reference.com/cfb/years/2000-team-offense.html is the link I'
 #If possible, I'd welcome any help from Professor Willis or our TA to write this code. 
 
 ```{r}
-(read_csv('cfboffense2025')
+read.csv("cfboffense2000.csv")
+```
+
+```{r}
+library(tidyverse)
+
+column_names <- c(
+  "rank", "school", "games", "points_per_game",
+  "passing_completions", "passing_attempts",
+  "passing_pct", "passing_yards", "passing_td",
+  "rushing_attempts", "rushing_yards",
+  "rushing_average", "rushing_td",
+  "total_plays", "total_yards", "yards_per_play",
+  "first_downs_pass", "first_downs_rush",
+  "first_downs_penalty", "first_downs_total",
+  "penalties", "penalty_yards",
+  "fumbles_lost", "interceptions", "turnovers"
+)
+
+# Run from the repository's RStudio project
+files <- list.files(
+  path = "project",
+  pattern = "^cfboffense[0-9]{4}\\.csv$",
+  full.names = TRUE
+)
+
+# Import every file and combine into one dataframe
+offense_all <- files |>
+  map(\(file) {
+    read_csv(
+      file,
+      skip = 2,
+      col_names = column_names,
+      show_col_types = FALSE
+    ) |>
+      mutate(
+        year = as.integer(str_extract(basename(file), "[0-9]{4}"))
+      )
+  }) |>
+  list_rbind()
+
+offense_all |>
+  count(year)
 ```
 
