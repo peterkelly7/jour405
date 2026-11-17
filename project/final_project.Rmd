@@ -93,7 +93,7 @@ offense_with_coaches %>%
   summarize(across(c(rank, points_per_game, passing_yards, rushing_yards, total_yards, first_downs_total), 
                    ~mean(.x, na.rm = TRUE)))
 ```
-#Goal: getting z-scores. I'm unsure how I would get z-scores on the numbers relative to the rest of the teams that year, or if that's what I would even need to do. I think I just calculated z-scores based on distance from the mean of all the Saban-tree coaches.
+# Goal: getting z-scores. I'm unsure how I would get z-scores on the numbers relative to the rest of the teams that year, or if that's what I would even need to do. I think I just calculated z-scores based on distance from the mean of all the Saban-tree coaches.
 ```{r}
 offense_with_coaches <- offense_with_coaches |>
   mutate(across(
@@ -104,7 +104,7 @@ offense_with_coaches <- offense_with_coaches |>
 ```
 
 
-#This doesn't seem to be working. I'm trying to filter the top 5 highest and lowest z-scores for each category but it's telling me that they can't find the categories I want to use. 
+# The code below doesn't seem to be working. I'm trying to filter the top 5 highest and lowest z-scores for each category but it's telling me that they can't find the categories I want to use. 
 ```{r}
 extremes <- bind_rows(
   points_per_game |>
@@ -120,3 +120,8 @@ extremes <- bind_rows(
   ungroup()
 ```
 
+# Next steps I want to take: 
+
+# 1. Find how each team's offense ranked compared to the rest of their year in the specific stats I used above.
+# 2. Compare z-scores of Locksley's years to other coaches to see if there was any major disparity (maybe do some z-score averaging of all coaches? Not sure how this would work but could be cool)
+# 3. If I have time - figure out how to use regression analysis to be able to predict what metrics, if any, can indicate a better or worse Saban offense.
