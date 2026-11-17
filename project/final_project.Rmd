@@ -49,12 +49,18 @@ column_names <- c(
   "fumbles_lost", "interceptions", "turnovers"
 )
 
-# Run from the repository's RStudio project
+# Work from either the repository root or this document's project folder.
+data_dir <- if (dir.exists("project")) "project" else "."
 files <- list.files(
-  path = "project",
-  pattern = "^cfboffense[0-9]{4}\\.csv$",
+  path = data_dir,
+  # The 2024 export is CSV-formatted but has a .txt extension.
+  pattern = "^cfboffense[0-9]{4}\\.(csv|txt)$",
   full.names = TRUE
 )
+
+if (length(files) == 0) {
+  stop("No cfboffense files found. Run from the repository root or project folder.")
+}
 
 # Import every file and combine into one dataframe
 offense_all <- files |>
@@ -63,6 +69,7 @@ offense_all <- files |>
       file,
       skip = 2,
       col_names = column_names,
+      col_types = cols(.default = col_double(), school = col_character()),
       show_col_types = FALSE
     ) |>
       mutate(
@@ -73,5 +80,43 @@ offense_all <- files |>
 
 offense_all |>
   count(year)
+```
+
+```{r}
+offense_with_coaches <- Coaches_Data |> inner_join(offense_all, join_by(School == school, Year == year))
+```
+
+
+#Goal: find means of select stats
+```{r}
+offense_with_coaches %>%
+  summarize(across(c(rank, points_per_game, passing_yards, rushing_yards, total_yards, first_downs_total), 
+                   ~mean(.x, na.rm = TRUE)))
+```
+#Goal: getting z-scores. I'm unsure how I would get z-scores on the numbers relative to the rest of the teams that year, or if that's what I would even need to do. I think I just calculated z-scores based on distance from the mean of all the Saban-tree coaches.
+```{r}
+offense_with_coaches <- offense_with_coaches |>
+  mutate(across(
+    c(rank, points_per_game, passing_yards, rushing_yards, total_yards, first_downs_total),
+    ~ (.x - mean(.x, na.rm = TRUE)) / sd(.x, na.rm = TRUE),
+    .names = "{.col}_zscore"
+  ))
+```
+
+
+#This doesn't seem to be working. I'm trying to filter the top 5 highest and lowest z-scores for each category but it's telling me that they can't find the categories I want to use. 
+```{r}
+extremes <- bind_rows(
+  points_per_game |>
+    group_by(category) |>
+    slice_max(points_per_game_zscore, n = 5, with_ties = FALSE) |>
+    mutate(ranking = "Highest"),
+
+  points_per_game |>
+    group_by(category) |>
+    slice_min(points_per_game_zscore, n = 5, with_ties = FALSE) |>
+    mutate(ranking = "Lowest")
+) |>
+  ungroup()
 ```
 
